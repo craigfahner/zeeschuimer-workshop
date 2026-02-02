@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Instagram NDJSON Viewer</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div id="container">
+    <div id="leftColumn">
+      <select id="filterSelect">
+        <option value="all">All posts</option>
+        <option value="nonfollowed">Only non-followed accounts</option>
+        <option value="followed">Only followed accounts</option>
+        <option value="sponsored">Only sponsored posts</option>
+      </select>
+      <div id="imageGrid"></div>
+    </div>
+
+    <div id="rightColumn">
+      <div id="imagePreviewContainer">
+        <a href="#" target="_blank" id="instaLink"><img id="largeImage" src="" alt="" /></a>
+      </div>
+      <div id="postDetails"></div>
+
+      <div id="annotations">
+        <div>
+            <br />
+          <label>Annotation1</label><br />
+          <input type="text" id="annotation1" />
+        </div>
+        <div>
+          <label>Annotation2</label><br />
+          <input type="text" id="annotation2" />
+        </div>
+        <button id="saveAnnotations">Save JSON with annotations</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

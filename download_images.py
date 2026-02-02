@@ -2,52 +2,70 @@ import json
 import os
 import requests
 
+# --- CONFIG ---
 INPUT_FILE = "posts.ndjson"
 OUTDIR = "images"
-HEADERS = {"User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7)"}
+ONLY_NON_FOLLOWING = False  # Set to False to download from all accounts
+HEADERS = {
+    "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7)"
+}
 
 os.makedirs(OUTDIR, exist_ok=True)
+
 
 def download_file(url, filename):
     try:
         r = requests.get(url, headers=HEADERS, timeout=10)
         r.raise_for_status()
+
+        content_type = r.headers.get("Content-Type", "")
+        if "image" not in content_type:
+            print(f"Skipped (not an image): {filename} [{content_type}]")
+            return False
+
         with open(filename, "wb") as f:
             f.write(r.content)
-        print(f"✅ Saved {filename}")
-    except Exception as e:
-        print(f"⚠️ Failed {filename}: {e}")
 
-print("Extracting image/video URLs from non-followed accounts...")
+        print(f"Saved {filename}")
+        return True
+
+    except Exception as e:
+        print(f"Failed {filename}: {e}")
+        return False
+
+
+print("Extracting image thumbnails...")
 
 total_posts = 0
-non_followed_posts = 0
-downloaded_count = 0
+matched_posts = 0
+saved_images = 0
 
 with open(INPUT_FILE) as f:
     for line in f:
         total_posts += 1
         post = json.loads(line)
-        following = post.get("data", {}).get("user", {}).get("friendship_status", {}).get("following")
-        if following == False:
-            non_followed_posts += 1
-            post_id = post["data"]["id"]
 
-            # Thumbnail image
-            thumb_url = post["data"].get("image_versions2", {}).get("candidates", [{}])[0].get("url")
-            if thumb_url:
-                download_file(thumb_url, os.path.join(OUTDIR, f"{post_id}_thumb.jpg"))
-                downloaded_count += 1
+        data = post.get("data", {})
+        user = data.get("user", {})
+        following = user.get("friendship_status", {}).get("following")
 
-            # Video thumbnail
-            video_versions = post["data"].get("video_versions")
-            if isinstance(video_versions, list) and len(video_versions) > 0:
-                video_thumb_url = video_versions[0].get("url")
-                if video_thumb_url:
-                    download_file(video_thumb_url, os.path.join(OUTDIR, f"{post_id}_video_thumb.jpg"))
-                    downloaded_count += 1
+        if ONLY_NON_FOLLOWING and following is not False:
+            continue
 
-print(f"Total posts: {total_posts}")
-print(f"Posts from non-followed accounts: {non_followed_posts}")
-print(f"Found {downloaded_count} image/video thumbnails")
-print(f"Done. Thumbnails saved to {OUTDIR}/")
+        post_id = data.get("id")
+        if not post_id:
+            continue
+
+        candidates = data.get("image_versions2", {}).get("candidates", [])
+        if isinstance(candidates, list) and len(candidates) > 0:
+            image_url = candidates[0].get("url")
+            if image_url:
+                matched_posts += 1
+                filename = os.path.join(OUTDIR, f"{post_id}.jpg")
+                if download_file(image_url, filename):
+                    saved_images += 1
+
+print(f"\nTotal posts scanned: {total_posts}")
+print(f"Posts matching filter: {matched_posts}")
+print(f"Images saved: {saved_images}")
+print(f"Done. Images saved to {OUTDIR}/")
