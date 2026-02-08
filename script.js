@@ -15,6 +15,7 @@ const annotation1Input = document.getElementById("annotation1");
 const annotation2Input = document.getElementById("annotation2");
 const saveButton = document.getElementById("saveAnnotations");
 const annotationsPanel = document.getElementById("annotations");
+const stats = document.getElementById("stats");
 
 async function loadNDJSON() {
   const res = await fetch(NDJSON_FILE);
@@ -44,6 +45,8 @@ function applyFilter() {
 
 function renderGrid() {
   grid.innerHTML = "";
+
+  let count = 0;
 
   filteredPosts.forEach((post) => {
     const postId = post.data?.id;
@@ -79,7 +82,18 @@ function renderGrid() {
     });
 
     grid.appendChild(cell);
+    count++;
   });
+  if(filterSelect.value == "all"){
+    stats.innerHTML = count + " posts total";
+  } else if(filterSelect.value == "followed") {
+    stats.innerHTML = count + " posts from followed accounts";
+  } else if(filterSelect.value == "nonfollowed"){
+    stats.innerHTML = count + " posts from non-followed accounts"
+  } else if(filterSelect.value == "sponsored"){
+    stats.innerHTML = count + " sponsored posts"
+  }
+  
 }
 
 function updateRightPanel() {
