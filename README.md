@@ -264,9 +264,9 @@ While 4CAT is certainly a very useful tool, it unfortunately doesn't allow for t
 
 Here are a few JavaScript-based examples of how you can parse the NDJSON file produced by Zeeschuimer to visualize and analyze Instagram data:
 
-### Example 1: Simple graph
+### Example 1: [Simple graph](https://craigfahner.github.io/zeeschuimer-workshop/following/following.html)
 
-Following vs non-following posts visualization (code here)
+[**Following vs non-following posts visualization**](https://craigfahner.github.io/zeeschuimer-workshop/following/following.html) ([code here](https://github.com/craigfahner/zeeschuimer-workshop/tree/main/following))
 
 To start, here's a simple example that graphs the NDJSON data according to a particular parameter. I am interested in the ratio between recommended posts (ie posts that originate with accounts that the user is not following) vs posts from followers. After loading the ndjson file as "lines", I parse the data like so:
 
@@ -282,4 +282,52 @@ function parseData() {
 }
 ```
 
-This essentially keeps a tally of whether the data points originate from non-following or following accoutns. I th
+This essentially keeps a tally of whether the data points originate from non-following or following accounts. I am graphing this using a simple [p5.js](https://www.p5js.org) sketch.
+
+### Example 2: [Image wall](https://craigfahner.github.io/zeeschuimer-workshop/imagewall/grid.html)
+
+[**Image wall with annotations**](https://craigfahner.github.io/zeeschuimer-workshop/imagewall/grid.html) ([code here](https://github.com/craigfahner/zeeschuimer-workshop/tree/main/imagewall))
+
+This example takes an NDJSON file from Zeeschuimer and renders all of the collected images as a grid. For now, it is set up to automatically load a sample dataset. You can filter the dataset by All Posts, Posts from Followed Accounts, and Posts from Non-followed accounts. When you hover over a given post, details about the post are revealed, rendered according to this logic:
+
+```
+meta.appendChild(makeField("Username", post.username));
+meta.appendChild(makeField("Full Name", post.fullName));
+meta.appendChild(makeField("Caption", post.caption));
+meta.appendChild(makeField("Likes", post.likeCount));
+meta.appendChild(makeField("Comments", post.commentCount));
+meta.appendChild(makeField("Following", post.following));
+meta.appendChild(makeField("Paid Partnership", post.isPaidPartnership));
+meta.appendChild(makeField("Date Posted", formatDate(post.datePosted)));
+meta.appendChild(makeField("Date Captured", formatDate(post.dateCaptured)));
+```
+
+There are also fields that allow you to annotate that data. Here, you could add your own observations about the data. For instance, a text description of the image, or some other data that is specific to your study or visualization. 
+
+Finally, this tool allows you to save your annotated data as a JSON file. JSON files can be processed by a number of data analysis tools, and are more common that NDJSON files.
+
+## Scraping images from Instagram
+
+The above tools will work with freshly-captured Zeeschuimer data. Instagram image URLs unfortunately expire after about 10 hours (not to mention that they aren't particularly fond of off-platform image requests.)
+
+Below are some instructions for archiving your images long term. Before you do this, you'll probably want to clone [this GitHub repo](https://craigfahner.github.io/zeeschuimer-workshop/) to your own computer to edit the files.
+
+For long-term storage of Instagram images, please use this python script.
+
+To use, go to your computer's terminal or command prompt, navigate to the folder your ndjson file is in, and run this: 
+
+```
+python3 download_images.py [your NDJSON file]
+```
+
+This will save a folder of all of the images in the Zeeschuimer dataset. The above tools have settings in the .js file that read:
+
+```
+let useArchivedImages = true;
+const ndjsonFile = "../posts.ndjson";
+```
+
+To use your own data, ensure that your images are in a subfolder called 'images', and that the `ndjsonFile` variable points to your file.
+
+Ensure that `useArchivedImages` is `true`. Once you've replaced the sample file with your own file, you should be able to load all of your data locally, eliminating the need to make direct requests from Instagram.
+

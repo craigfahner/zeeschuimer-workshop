@@ -82,3 +82,10 @@ body {
   border: 1px solid white;
   cursor: pointer;
 }
+
+#postCounter {
+  padding: 10px 0;
+  font-size: 14px;
+  border-bottom: 1px solid #333;
+  margin-bottom: 10px;
+}

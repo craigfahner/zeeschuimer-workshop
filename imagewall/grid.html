@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Instagram Post Viewer</title>
+    <link rel="stylesheet" href="gridstyle.css" />
+  </head>
+  <body>
+    <div class="container">
+      <!-- LEFT COLUMN -->
+      <div class="leftColumn">
+        Replace .ndjson file:
+        <input type="file" id="fileInput" accept=".ndjson,.txt,.json">
+        <br \>
+        <select id="filterSelect">
+          <option value="all">All Posts</option>
+          <option value="following">Following Only</option>
+          <option value="nonfollowing">Non-Following Only</option>
+        </select>
+        <div id="postCounter"></div>
+        <div id="grid"></div>
+        <button id="exportBtn">Export as JSON (with annotations)</button>
+      </div>
+
+      <!-- RIGHT COLUMN -->
+      <div class="rightColumn">
+        <div id="detailView">
+          <p>Select a post to view details.</p>
+        </div>
+      </div>
+    </div>
+
+    <script src="grid.js"></script>
+  </body>
+</html>

@@ -1,16 +1,22 @@
-const useArchivedImages = true;
-const ndjsonFile = "posts.ndjson";
+let useArchivedImages = true;
+const ndjsonFile = "../posts.ndjson";
 
 let allPosts = [];
 let hoveredPost = null;
 let selectedPost = null;
 
 fetch(ndjsonFile)
-  .then(res => res.text())
-  .then(text => {
-    const lines = text.trim().split(/\r?\n/);
+  .then((res) => res.text())
+  .then((text) => {
+    allPosts = parseNDJSON(text);
+    renderGrid(allPosts);
+  });
 
-    allPosts = lines.map(line => {
+function parseNDJSON(text) {
+  const lines = text.trim().split(/\r?\n/);
+
+  return lines
+    .map((line) => {
       const raw = JSON.parse(line);
       const data = raw.data || {};
 
@@ -25,26 +31,83 @@ fetch(ndjsonFile)
         id: data.id,
         code: data.code,
         username: data.user?.username || "unknown",
+        fullName: data.user?.full_name || "—",
         caption: data.caption?.text || "",
         following: data.user?.friendship_status?.following || false,
         isPaidPartnership: data.is_paid_partnership || false,
         likeCount: data.like_count || 0,
         commentCount: data.comment_count || 0,
+        datePosted: data.taken_at ? new Date(data.taken_at * 1000) : null,
+        dateCaptured: new Date(), // when YOUR tool loaded it
         thumbnailUrl: imageUrl,
         displayUrl: imageUrl,
         annotation1: "",
-        annotation2: ""
+        annotation2: "",
       };
-    }).filter(Boolean);
+    })
+    .filter(Boolean);
+}
 
-    renderGrid(allPosts);
-  });
+document.getElementById("fileInput").addEventListener("change", handleFileSelect);
+
+function handleFileSelect(event) {
+  const file = event.target.files[0];
+  if (!file) return;
+
+  const reader = new FileReader();
+
+  reader.onload = function(e) {
+    try {
+      const text = e.target.result;
+
+      // Parse depending on format
+      if (file.name.endsWith(".ndjson")) {
+        allPosts = parseNDJSON(text);
+      } else {
+        return null;
+      }
+
+      console.log("Loaded", allPosts.length, "posts from local file");
+
+      resetVisualization();      // clear old DOM elements
+      useArchivedImages = false; // set this to false since new file likely isn't archived
+
+      renderGrid(allPosts);
+      //initializeVisualization(); // rebuild using new posts
+
+    } catch (err) {
+      console.error("Failed to parse file:", err);
+      alert("Error reading file. Make sure it's valid NDJSON or JSON.");
+    }
+  };
+
+  reader.readAsText(file);
+}
+
+function resetVisualization() {
+  // For grid layout
+  const grid = document.getElementById("grid");
+  if (grid) grid.innerHTML = "";
+
+  // // For scatter layout
+  // const scatter = document.getElementById("scatterArea");
+  // if (scatter) scatter.innerHTML = "";
+
+  // Clear detail panel if needed
+  const detail = document.getElementById("detailView");
+  if (detail) detail.innerHTML = "<p>Select a post to view details</p>";
+}
+
+function formatDate(date) {
+  if (!date) return "—";
+  return date.toLocaleString();
+}
 
 function renderGrid(posts) {
   const grid = document.getElementById("grid");
   grid.innerHTML = "";
 
-  posts.forEach(post => {
+  posts.forEach((post) => {
     const tile = document.createElement("div");
     tile.className = "tile";
     tile.dataset.id = post.id;
@@ -54,9 +117,7 @@ function renderGrid(posts) {
     }
 
     const img = document.createElement("img");
-    img.src = useArchivedImages
-      ? `images/${post.id}.jpg`
-      : post.thumbnailUrl;
+    img.src = useArchivedImages ? `images/${post.id}.jpg` : post.thumbnailUrl;
 
     tile.appendChild(img);
 
@@ -78,10 +139,11 @@ function renderGrid(posts) {
 
     grid.appendChild(tile);
   });
+  updatePostCounter(allPosts, "all");
 }
 
 function updateSelectionOutline() {
-  document.querySelectorAll(".tile").forEach(t => {
+  document.querySelectorAll(".tile").forEach((t) => {
     t.classList.remove("selected");
     if (selectedPost && t.dataset.id === selectedPost.id) {
       t.classList.add("selected");
@@ -89,14 +151,16 @@ function updateSelectionOutline() {
   });
 }
 
-document.getElementById("filterSelect").addEventListener("change", e => {
+document.getElementById("filterSelect").addEventListener("change", (e) => {
   const value = e.target.value;
   let filtered = allPosts;
 
-  if (value === "following") filtered = allPosts.filter(p => p.following);
-  if (value === "nonfollowing") filtered = allPosts.filter(p => !p.following);
+  if (value === "following") filtered = allPosts.filter((p) => p.following);
+  if (value === "nonfollowing") filtered = allPosts.filter((p) => !p.following);
 
   renderGrid(filtered);
+    updatePostCounter(filtered, value);
+
 });
 
 function renderDetail(post) {
@@ -111,9 +175,7 @@ function renderDetail(post) {
 
   const img = document.createElement("img");
   img.className = "detailImage";
-  img.src = useArchivedImages
-    ? `images/${post.id}.jpg`
-    : post.displayUrl;
+  img.src = useArchivedImages ? `images/${post.id}.jpg` : post.displayUrl;
 
   link.appendChild(img);
   detail.appendChild(link);
@@ -122,11 +184,14 @@ function renderDetail(post) {
   meta.className = "metaBlock";
 
   meta.appendChild(makeField("Username", post.username));
+  meta.appendChild(makeField("Full Name", post.fullName));
   meta.appendChild(makeField("Caption", post.caption));
   meta.appendChild(makeField("Likes", post.likeCount));
   meta.appendChild(makeField("Comments", post.commentCount));
   meta.appendChild(makeField("Following", post.following));
   meta.appendChild(makeField("Paid Partnership", post.isPaidPartnership));
+  meta.appendChild(makeField("Date Posted", formatDate(post.datePosted)));
+  meta.appendChild(makeField("Date Captured", formatDate(post.dateCaptured)));
 
   meta.appendChild(makeAnnotationField("Annotation 1", post, "annotation1"));
   meta.appendChild(makeAnnotationField("Annotation 2", post, "annotation2"));
@@ -188,3 +253,16 @@ document.getElementById("exportBtn").addEventListener("click", () => {
 
   URL.revokeObjectURL(url);
 });
+
+function updatePostCounter(posts, filterMode) {
+  const el = document.getElementById("postCounter");
+  const count = posts.length;
+
+  if (filterMode === "following") {
+    el.textContent = `${count} posts by accounts followed by user`;
+  } else if (filterMode === "nonfollowing") {
+    el.textContent = `${count} suggested posts`;
+  } else {
+    el.textContent = `Total posts: ${count}`;
+  }
+}
