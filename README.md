@@ -248,3 +248,15 @@ Located in clips_metadata.music_info
 | location | Location tag |
 
 
+### Step 3: Previewing and converting Zeeschuimer data
+
+The Digital Methods Initiative provides their own data analysis tool that is compatible with Zeeschuimer called [4CAT](https://zeeschuimer.4cat.nl/). 4CAT can do things like 
+- Performing text analysis functions
+- Export network analysis data
+- Export Zeeschuimer data as CSV
+- Interface with Machine Learning API for advanced analysis
+
+![4cat]({{ "/assets/4cat.png" | relative_url }})
+
+While 4CAT is certainly a very useful tool, it unfortunately doesn't allow for traversal of all of the nested data contained in Instagram data sets, such as individual comments and nested post data. So we will be dealing with the raw data instead!
+
