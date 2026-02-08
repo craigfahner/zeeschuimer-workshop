@@ -57,7 +57,7 @@ Consider the following aspects when you are creating a user persona:
 
 - What is the persona's **background**? What are the life events that shaped how they think? What kind of environment did the persona grow up in?
 - What is the persona's **rationale**? What are their motivations? What obstacles have they had to deal with? How do they accomplish their goals?
-- Embodiment: What do they look like? How do they speak? How do they hold themselves in the world?
+- **Embodiment**: What do they look like? How do they speak? How do they hold themselves in the world?
 - What are their **subconscious** behaviors? What are their habits that they might not be aware of? What is this person's affective universe? What kinds of contradictions define them?
 
 These parameters should be considered when signing up for a new account, filling out biographical information, and engaging with platform content (following accounts, viewing posts, etc). You may want to use a generative AI to create a fictional face for your user's profile picture, as well.
@@ -67,3 +67,10 @@ More information on the Research Persona Method can be found here:
 - [Digital Methods Initiative. “Research Persona as Digital Method.”](https://wiki.digitalmethods.net/Dmi/SummerSchool2019ResearchPersonaAsDigitalMethod)
 - [Bounegru, Liliana, Melody Devries, and Esther Weltevrede. 2022. “The Research Persona Method: Figuring and Reconfiguring Personalised Information Flows.” In Figure: Concept and Method. Springer Nature Singapore Singapore.](https://library.oapen.org/bitstream/handle/20.500.12657/59380/978-981-19-2476-7.pdf?sequence=1#page=88)
 
+## 3. Scraping Social Media Data with Zeeschuimer
+
+Zeeschuimer only works in the Firefox browser, so if you don't have that installed, you can download it [here](https://www.firefox.com/). 
+
+You can install Zeeschuimer by navigating to the latest release on [this Github page](https://github.com/digitalmethodsinitiative/zeeschuimer/releases). When in Firefox, you can click on the **.xpi** file and it will automatically install.
+
+A button with the Zeeschuimer logo (<img alt="Zeeschuimer's browser icon, a yellow 'Z' on a green background" src="/zeeschuimer-16.png">) should appear in your browser toolbar (a stylized Z). When you cli
