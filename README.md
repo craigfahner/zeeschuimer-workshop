@@ -69,6 +69,8 @@ More information on the Research Persona Method can be found here:
 
 ## 3. Scraping Social Media Data with Zeeschuimer
 
+### Step 1: Installing Zeeschuimer and taking your first recording
+
 Zeeschuimer only works in the Firefox browser, so if you don't have that installed, you can download it [here](https://www.firefox.com/). 
 
 You can install Zeeschuimer by navigating to the latest release on [this Github page](https://github.com/digitalmethodsinitiative/zeeschuimer/releases). When in Firefox, you can click on the **.xpi** file and it will automatically install.
@@ -76,5 +78,173 @@ You can install Zeeschuimer by navigating to the latest release on [this Github 
 A button with the Zeeschuimer logo (![Z]({{ "/assets/zeeschuimer-16.png" | relative_url }})) should appear in your browser toolbar (a stylized Z). When you click on the icon, you will be shown the Zeeschuimer control panel:
 
 ![Zeeschuimer's control panel]({{ "/assets/zs.png" | relative_url }})
+
+Zeeschuimer works sort of like a tape recorder. When you activate any of the social media options, Zeeschuimer will begin recording data on those sites. That data is dumped into an NDJSON file (new-line delimited JSON). The [NDJSON format](https://github.com/ndjson/ndjson-spec) isn't the most common data collection format, but it's efficient for maintaining a dataset that is constantly being appended with new data points. We'll look at different ways of parsing and converting NDJSON files.
+
+If you are scraping Instagram data, for instance, **first activate Instagram capture** in the Zeeschuimer control panel.  Then, scroll through Instagram to capture some content. This could either be on a specific account's page, the main feed, or the "reels" page. **Zeeschuimer will continue logging posts until you deactivate Instagram capture**! So, when you are finished, be sure to turn it off in the Zeeschuimer control panel.
+
+You will see a few options adjacent to the Instagram row in the panel:
+
+![Zeeschuimer's insta panel]({{ "/assets/insta.png" | relative_url }})
+
+Here, you can delete the captured data, and you can save the data as an NDJSON file. You can also send the data to an analysis platform called 4CAT. 
+
+### Step 2: Exploring the NDJSON file
+
+The file produced by Zeeschuimer is not streamlined for human readability the way that XML and other formats are. It's designed for easy parsability by programming languages like JavaScript and Python. It also allows for nested datasets – for instance, a single post can have a nested dataset of comments.
+
+Here's a summary of the data that is included in the NDJSON file:
+
+**Top-Level (Collection / Crawl Metadata)**
+
+These describe **how and where the post was collected**, not the post itself.
+
+| **Field** | **Meaning** |
+| --- | --- |
+| nav_index | Internal crawl/navigation position marker |
+| item_id | Unique ID for this collected item (postID_userID format) |
+| timestamp_collected | When this data was captured (Unix ms) |
+| source_platform | Platform domain (instagram.com) |
+| source_platform_url | Base URL of platform |
+| source_url | API endpoint used to fetch data |
+| user_agent | Browser/client used for scraping |
+| data | **The actual Instagram post object** (nested data - see below) |
+| id  | Internal dataset row ID |
+
+**Core Instagram Post Object**
+
+This contains **everything about the post itself**.
+
+**Identity & Classification**
+
+| **Field** | **Meaning** |
+| --- | --- |
+| id  | Instagram media ID (post identifier) |
+| pk  | Primary key version of the media ID |
+| code | Shortcode used in Instagram URLs |
+| media_type | Type of post |
+| product_type | Content type |
+| inventory_source | Feed source classification |
+| explore.title | Discovery surface (e.g. "Suggested for you") |
+
+**Author (data.user)**
+
+Information about the account that posted the content.
+
+| **Field** | **Meaning** |
+| --- | --- |
+| pk / id | User ID |
+| username | Handle |
+| full_name | Display name |
+| profile_pic_url | Profile image |
+| hd_profile_pic_url_info.url | High-res profile image |
+| is_verified | Blue check |
+| is_private | Private account flag |
+| is_unpublished | Account unpublished flag |
+| is_embeds_disabled | Embedding restrictions |
+| latest_reel_media | Timestamp of most recent Reel |
+| friendship_status.following | Viewer follows this user |
+| friendship_status.is_feed_favorite | Viewer marked as favorite |
+| transparency_\* | Account transparency labels |
+| ai_agent_owner_username | AI ownership tag (if any) |
+| live_broadcast_\* | Live video metadata |
+
+**Timing**
+
+| **Field** | **Meaning** |
+| --- | --- |
+| taken_at | When post was created (Unix seconds format) |
+| timestamp_collected | When _you_ captured it (Unix ms format) |
+
+**Caption**
+
+| **Field** | **Meaning** |
+| --- | --- |
+| caption.pk | Caption ID |
+| caption.text | Full caption text |
+| caption.has_translation | Translation availability |
+| caption_is_edited | Caption edited after posting |
+
+**Engagement Metrics**
+
+| **Field** | **Meaning** |
+| --- | --- |
+| like_count | Likes on Instagram |
+| fb_like_count | Likes on Facebook crosspost |
+| comment_count | Number of comments |
+| view_count | Video views |
+| media_repost_count | Times reposted |
+| has_liked | Whether viewer liked it |
+| has_viewer_saved | Whether viewer saved it |
+| hidden_likes_string_variant | Like count display control |
+
+**Video / Media**
+
+| **Field** | **Meaning** |
+| --- | --- |
+| original_width / original_height | Native video resolution |
+| video_versions | Progressive MP4 files at various sizes |
+| video_dash_manifest | DASH streaming manifest (adaptive streaming) |
+| number_of_qualities | Count of video quality tiers |
+| is_dash_eligible | Supports DASH streaming |
+| has_audio | Video contains audio |
+| duration | Video length (in seconds) |
+
+**Thumbnails & Images**
+
+| **Field** | **Meaning** |
+| --- | --- |
+| image_versions2.candidates | Thumbnail images at many resolutions |
+| display_uri | Main display image |
+
+**Audio / Music (Reel soundtrack)**
+
+Located in clips_metadata.music_info
+
+| **Field** | **Meaning** |
+| --- | --- |
+| music_asset_info.audio_cluster_id | Track ID |
+| music_asset_info.title | Song title |
+| music_asset_info.display_artist | Artist name |
+| music_asset_info.is_explicit | Explicit content flag |
+| music_consumption_info.is_trending_in_clips | Trending audio flag |
+| music_consumption_info.should_mute_audio | Audio mute recommendation |
+
+**Commercial / Promotion**
+
+| **Field** | **Meaning** |
+| --- | --- |
+| is_paid_partnership | Sponsored partnership flag |
+| affiliate_info | Affiliate marketing data |
+| sponsor_tags | Tagged sponsors |
+| branded_content_tags | Branded collaborators |
+| can_see_insights_as_brand | Brand analytics visibility |
+
+**Comments & Social**
+
+| **Field** | **Meaning** |
+| --- | --- |
+| comments | Comment preview objects |
+| comments_disabled | Are comments turned off |
+| commenting_disabled_for_viewer | Viewer-specific restriction |
+| top_likers | Users who liked |
+| facepile_top_likers | Displayed liker avatars |
+| social_context | "Liked by X" social proof |
+
+**Sharing & Distribution**
+
+| **Field** | **Meaning** |
+| --- | --- |
+| can_viewer_reshare | Viewer can reshare |
+| can_reshare | General reshare permission |
+| sharing_friction_info | Reshare warning system |
+| crosspost_metadata.is_feedback_aggregated | FB/IG engagement merge |
+| is_shared_to_fb | Shared to Facebook |
+
+**Location**
+
+| **Field** | **Meaning** |
+| --- | --- |
+| location | Location tag |
 
 
