@@ -40,7 +40,8 @@ strong {
 /* Each cell is a square defined by its width */
 .gridCell {
   position: relative;
-  width: 100%;
+  width: 125px;
+  height: 125px;
   aspect-ratio: 1 / 1;     /* TRUE square */
   overflow: hidden;
   cursor: pointer;

@@ -260,3 +260,26 @@ The Digital Methods Initiative provides their own data analysis tool that is com
 
 While 4CAT is certainly a very useful tool, it unfortunately doesn't allow for traversal of all of the nested data contained in Instagram data sets, such as individual comments and nested post data. So we will be dealing with the raw data instead!
 
+## Parsing, Analyzing and Annotating Zeeschuimer Data
+
+Here are a few JavaScript-based examples of how you can parse the NDJSON file produced by Zeeschuimer to visualize and analyze Instagram data:
+
+### Example 1: Simple graph
+
+Following vs non-following posts visualization (code here)
+
+To start, here's a simple example that graphs the NDJSON data according to a particular parameter. I am interested in the ratio between recommended posts (ie posts that originate with accounts that the user is not following) vs posts from followers. After loading the ndjson file as "lines", I parse the data like so:
+
+```
+function parseData() {
+  lines.forEach(line => {
+    if (!line.trim()) return;
+    const d = JSON.parse(line);
+    const isFollowing = d?.data?.user?.friendship_status?.following;
+    if (isFollowing === true) counts.following++;
+    else counts.notFollowing++;
+  });
+}
+```
+
+This essentially keeps a tally of whether the data points originate from non-following or following accoutns. I th

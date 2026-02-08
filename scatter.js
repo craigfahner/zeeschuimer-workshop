@@ -175,7 +175,7 @@ function renderDetail(post) {
   const img = document.createElement("img");
   img.src = useArchivedImages
   ? `images/${post.id}.jpg`
-  : post.thumbnailUrl;
+  : post.displayUrl;
   //img.src = post.displayUrl;
   img.className = "detailImage";
 

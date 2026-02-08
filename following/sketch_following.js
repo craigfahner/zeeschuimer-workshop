@@ -2,7 +2,7 @@ let counts = { following: 0, notFollowing: 0 };
 let lines;
 
 function preload() {
-  lines = loadStrings("posts.ndjson");
+  lines = loadStrings("../posts.ndjson");
 }
 
 function setup() {
