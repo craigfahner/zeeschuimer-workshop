@@ -1,5 +1,7 @@
 const scatterArea = document.getElementById("scatterArea");
 const detailView = document.getElementById("detailView");
+const useArchivedImages = true;
+
 
 let selectedTile = null;
 let zCounter = 1;
@@ -46,7 +48,10 @@ function createTiles() {
 
   posts.forEach((post) => {
     const tile = document.createElement("img");
-    tile.src = post.displayUrl;
+    //tile.src = post.displayUrl;
+    tile.src = useArchivedImages
+  ? `images/${post.id}.jpg`
+  : post.thumbnailUrl;
     tile.className = "scatterTile";
     tile.id = post.id;
 
@@ -168,7 +173,10 @@ function renderDetail(post) {
   link.rel = "noopener noreferrer";
 
   const img = document.createElement("img");
-  img.src = post.displayUrl;
+  img.src = useArchivedImages
+  ? `images/${post.id}.jpg`
+  : post.thumbnailUrl;
+  //img.src = post.displayUrl;
   img.className = "detailImage";
 
   link.appendChild(img);
