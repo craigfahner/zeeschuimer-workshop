@@ -310,9 +310,9 @@ Finally, this tool allows you to save your annotated data as a JSON file. JSON f
 
 The above tools will work with freshly-captured Zeeschuimer data. Instagram image URLs unfortunately expire after about 10 hours (not to mention that they aren't particularly fond of off-platform image requests.)
 
-Below are some instructions for archiving your images long term. Before you do this, you'll probably want to clone [this GitHub repo](https://craigfahner.github.io/zeeschuimer-workshop/) to your own computer to edit the files.
+Below are some instructions for archiving your images long term. Before you do this, you'll probably want to clone [this GitHub repo](https://github.com/craigfahner/zeeschuimer-workshop/tree/main/) to your own computer to edit the files.
 
-For long-term storage of Instagram images, please use this python script.
+For long-term storage of Instagram images, please use [the included Python script](https://github.com/craigfahner/zeeschuimer-workshop/tree/main/download_images.py).
 
 To use, go to your computer's terminal or command prompt, navigate to the folder your ndjson file is in, and run this: 
 
