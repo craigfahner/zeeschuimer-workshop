@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Instagram Post Viewer</title>
+  <link rel="stylesheet" href="gridstyle.css" />
+</head>
+<body>
+  <div class="container">
+    
+    <!-- LEFT COLUMN -->
+    <div class="leftColumn">
+      <select id="filterSelect">
+        <option value="all">All Posts</option>
+        <option value="following">Following Only</option>
+        <option value="nonfollowing">Non-Following Only</option>
+      </select>
+
+      <div id="grid"></div>
+    </div>
+
+    <!-- RIGHT COLUMN -->
+    <div class="rightColumn">
+      <div id="detailView">
+        <p>Select a post to view details.</p>
+      </div>
+    </div>
+
+  </div>
+
+  <script src="nonfollowing_grid.js"></script>
+</body>
+</html>

@@ -1,0 +1,46 @@
+body {
+  margin: 0;
+  font-family: sans-serif;
+  background: black;
+  color: white;
+}
+
+#container {
+  display: flex;
+  height: 100vh;
+}
+
+/* LEFT: square scatter board */
+#leftPanel {
+  width: 80vh;              /* square based on viewport height */
+  height: 80vh;
+  margin: auto 20px;
+  position: relative;
+  border: 1px solid white;
+  background: #111;
+}
+
+#scatterArea {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  overflow: hidden;
+}
+
+/* RIGHT: detail inspector */
+#rightPanel {
+  flex: 1;
+  padding: 30px;
+  overflow-y: auto;
+}
+
+.detailImage {
+  max-width: 100%;
+  margin-bottom: 20px;
+  display: block;
+}
+
+.metaBlock p {
+  margin-bottom: 18px;
+  line-height: 1.4;
+}

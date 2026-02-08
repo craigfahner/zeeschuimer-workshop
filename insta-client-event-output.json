@@ -1,0 +1,192 @@
+{
+  "app_id ": "936619743392459 ",
+  "app_uid ": "175443892 ",
+  "app_ver ": "1.0.0 ",
+  "claims ": ["hmac.AR34EqYS3hirt6zij4SxmsbRc68XEzDbrl4dnTfiodeBlKdN "],
+  "data ": [
+    {
+      "extra ": {
+        "duration ": 41.54,
+        "loop_count ": 0,
+        "lsp ": 0,
+        "playing_audio ": 1,
+        "seq_num ": 5,
+        "time ": 37.93,
+        "video_width ": 1276,
+        "m_pk ": "3825275093774171641_6283863287 ",
+        "a_i ": "organic ",
+        "a_pk ": "6283863287 ",
+        "is_dash_eligible ": 1,
+        "nav_chain ": "PolarisFeedRoot:feedPage:1:via_cold_start ",
+        "pk ": "175443892 ",
+        "playback_format ": "dash ",
+        "time_spent_id ": "ln7uw3 ",
+        "tracking_token ": "eyJ2ZXJzaW9uIjo1LCJwYXlsb2FkIjp7ImlzX2FuYWx5dGljc190cmFja2VkIjp0cnVlLCJ1dWlkIjoiOGY5OWJkM2EtMDZiZC00ZjU4LWE2ZDgtMTBkOGExMjI0MGNmMzgyNTI3NTA5Mzc3NDE3MTY0MSIsInNlcnZlcl90b2tlbiI6IjE3NzAyNDk2MDM5MDR8MzgyNTI3NTA5Mzc3NDE3MTY0MXwxNzU0NDM4OTJ8OGEzZTJhYzViOTgzOWYxNTMzZDNmOTFiZjI4N2Y1YzAwYjQ0YTA1NzkwZjQyMjI4ZDYwOTM3MzQ1ZjQ0NDEzNCJ9LCJzaWduYXR1cmUiOiIifQ== "
+      },
+      "name ": "video_paused ",
+      "time ": 1770249644.3,
+      "module ": "feed_timeline "
+    },
+    {
+      "extra ": {
+        "reason ": "autoplay ",
+        "seq_num ": 2,
+        "time ": 0,
+        "video_width ": 720,
+        "m_pk ": "3821722652973505520_232103510 ",
+        "a_i ": "ad ",
+        "a_pk ": "232103510 ",
+        "is_dash_eligible ": 1,
+        "nav_chain ": "PolarisFeedRoot:feedPage:1:via_cold_start ",
+        "pk ": "175443892 ",
+        "playback_format ": "dash ",
+        "time_spent_id ": "ln7uw3 ",
+        "tracking_token ": "AI@AQIE84JSfd7nyc6RiGZWThp92S9P9RSNAx9X3ed25uks65izEKmHaPhOLd1RcXAKbGfsMjl-stHN6pCPtL4-g3VZ "
+      },
+      "name ": "video_should_start ",
+      "time ": 1770249644.302,
+      "module ": "feed_timeline "
+    },
+    {
+      "extra ": {
+        "follow_status ": "not_following ",
+        "loop_count ": 0,
+        "m_ts ": 1769804864,
+        "playing_audio ": 1,
+        "radio_type ": "none-none ",
+        "seq_num ": 3,
+        "timeAsPercent ": 0,
+        "video_width ": 720,
+        "m_pk ": "3821722652973505520_232103510 ",
+        "a_i ": "ad ",
+        "a_pk ": "232103510 ",
+        "is_dash_eligible ": 1,
+        "nav_chain ": "PolarisFeedRoot:feedPage:1:via_cold_start ",
+        "pk ": "175443892 ",
+        "playback_format ": "dash ",
+        "time_spent_id ": "ln7uw3 ",
+        "tracking_token ": "AI@AQIE84JSfd7nyc6RiGZWThp92S9P9RSNAx9X3ed25uks65izEKmHaPhOLd1RcXAKbGfsMjl-stHN6pCPtL4-g3VZ "
+      },
+      "name ": "video_buffering_started ",
+      "time ": 1770249644.302,
+      "module ": "feed_timeline "
+    },
+    {
+      "extra ": {
+        "follow_status ": "not_following ",
+        "loop_count ": 0,
+        "lsp ": 0,
+        "m_ts ": 1769804864,
+        "playing_audio ": 1,
+        "radio_type ": "none-none ",
+        "seq_num ": 4,
+        "timeAsPercent ": 0,
+        "video_width ": 720,
+        "m_pk ": "3821722652973505520_232103510 ",
+        "a_i ": "ad ",
+        "a_pk ": "232103510 ",
+        "is_dash_eligible ": 1,
+        "nav_chain ": "PolarisFeedRoot:feedPage:1:via_cold_start ",
+        "pk ": "175443892 ",
+        "playback_format ": "dash ",
+        "time_spent_id ": "ln7uw3 ",
+        "tracking_token ": "AI@AQIE84JSfd7nyc6RiGZWThp92S9P9RSNAx9X3ed25uks65izEKmHaPhOLd1RcXAKbGfsMjl-stHN6pCPtL4-g3VZ "
+      },
+      "name ": "video_buffering_finished ",
+      "time ": 1770249644.306,
+      "module ": "feed_timeline "
+    },
+    {
+      "extra ": {
+        "reason ": "autoplay ",
+        "seq_num ": 5,
+        "start_delay ": 4,
+        "time ": 0,
+        "video_width ": 720,
+        "m_pk ": "3821722652973505520_232103510 ",
+        "a_i ": "ad ",
+        "a_pk ": "232103510 ",
+        "is_dash_eligible ": 1,
+        "nav_chain ": "PolarisFeedRoot:feedPage:1:via_cold_start ",
+        "pk ": "175443892 ",
+        "playback_format ": "dash ",
+        "time_spent_id ": "ln7uw3 ",
+        "tracking_token ": "AI@AQIE84JSfd7nyc6RiGZWThp92S9P9RSNAx9X3ed25uks65izEKmHaPhOLd1RcXAKbGfsMjl-stHN6pCPtL4-g3VZ "
+      },
+      "name ": "video_started_playing ",
+      "time ": 1770249644.306,
+      "module ": "feed_timeline "
+    },
+    {
+      "extra ": {
+        "duration ": 11.03,
+        "loop_count ": 0,
+        "lsp ": 0,
+        "seq_num ": 6,
+        "time ": 0.69,
+        "video_width ": 720,
+        "m_pk ": "3821722652973505520_232103510 ",
+        "a_i ": "ad ",
+        "a_pk ": "232103510 ",
+        "is_dash_eligible ": 1,
+        "nav_chain ": "PolarisFeedRoot:feedPage:1:via_cold_start ",
+        "pk ": "175443892 ",
+        "playback_format ": "dash ",
+        "time_spent_id ": "ln7uw3 ",
+        "tracking_token ": "AI@AQIE84JSfd7nyc6RiGZWThp92S9P9RSNAx9X3ed25uks65izEKmHaPhOLd1RcXAKbGfsMjl-stHN6pCPtL4-g3VZ "
+      },
+      "name ": "video_full_viewed_time ",
+      "time ": 1770249645.048,
+      "module ": "feed_timeline "
+    },
+    {
+      "extra ": {
+        "duration ": 11.03,
+        "loop_count ": 0,
+        "lsp ": 0,
+        "seq_num ": 7,
+        "time ": 0.73,
+        "video_width ": 720,
+        "m_pk ": "3821722652973505520_232103510 ",
+        "a_i ": "ad ",
+        "a_pk ": "232103510 ",
+        "is_dash_eligible ": 1,
+        "nav_chain ": "PolarisFeedRoot:feedPage:1:via_cold_start ",
+        "pk ": "175443892 ",
+        "playback_format ": "dash ",
+        "time_spent_id ": "ln7uw3 ",
+        "tracking_token ": "AI@AQIE84JSfd7nyc6RiGZWThp92S9P9RSNAx9X3ed25uks65izEKmHaPhOLd1RcXAKbGfsMjl-stHN6pCPtL4-g3VZ "
+      },
+      "name ": "video_viewed_time ",
+      "time ": 1770249645.095,
+      "module ": "feed_timeline "
+    },
+    {
+      "extra ": {
+        "duration ": 11.03,
+        "loop_count ": 0,
+        "lsp ": 0,
+        "playing_audio ": 1,
+        "seq_num ": 8,
+        "time ": 1.12,
+        "video_width ": 720,
+        "m_pk ": "3821722652973505520_232103510 ",
+        "a_i ": "ad ",
+        "a_pk ": "232103510 ",
+        "is_dash_eligible ": 1,
+        "nav_chain ": "PolarisFeedRoot:feedPage:1:via_cold_start ",
+        "pk ": "175443892 ",
+        "playback_format ": "dash ",
+        "time_spent_id ": "ln7uw3 ",
+        "tracking_token ": "AI@AQIE84JSfd7nyc6RiGZWThp92S9P9RSNAx9X3ed25uks65izEKmHaPhOLd1RcXAKbGfsMjl-stHN6pCPtL4-g3VZ "
+      },
+      "name ": "video_paused ",
+      "time ": 1770249645.467,
+      "module ": "feed_timeline "
+    }
+  ],
+  "device_id ": "89E8BE8E-2142-4F16-BCFA-BDC97E389CD7 ",
+  "log_type ": "client_event ",
+  "seq ": 4,
+  "session_id ": "vcq4i7:syqwsc:ln7uw3 "
+}
