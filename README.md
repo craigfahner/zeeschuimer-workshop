@@ -73,4 +73,8 @@ Zeeschuimer only works in the Firefox browser, so if you don't have that install
 
 You can install Zeeschuimer by navigating to the latest release on [this Github page](https://github.com/digitalmethodsinitiative/zeeschuimer/releases). When in Firefox, you can click on the **.xpi** file and it will automatically install.
 
-A button with the Zeeschuimer logo (<img alt="Zeeschuimer's browser icon, a yellow 'Z' on a green background" src="/zeeschuimer-16.png">) should appear in your browser toolbar (a stylized Z). When you cli
+A button with the Zeeschuimer logo (<img alt="Zeeschuimer's browser icon, a yellow 'Z' on a green background" src="/zeeschuimer-16.png">) should appear in your browser toolbar (a stylized Z). When you click on the icon, you will be shown the Zeeschuimer control panel:
+
+(<img alt="Zeeschuimer's control panel" src="/zs.png">)
+
+
