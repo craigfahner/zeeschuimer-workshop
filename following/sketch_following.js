@@ -2,22 +2,25 @@ let counts = { following: 0, notFollowing: 0 };
 let lines;
 
 function preload() {
-  lines = loadStrings("../posts.ndjson");
+  //lines = loadStrings("../posts.ndjson"); // use this if you want to load an ndjson stored locally
 }
 
 function setup() {
   createCanvas(600, 400);
   textFont("sans-serif");
-  parseData();
+  if(lines){
+    parseData();
+  }
 }
 
 function parseData() {
+  counts = { following: 0, notFollowing: 0 }; // reset counts
   lines.forEach(line => {
     if (!line.trim()) return;
     const d = JSON.parse(line);
-    const isFollowing = d?.data?.user?.friendship_status?.following;
-    if (isFollowing === true) counts.following++;
-    else counts.notFollowing++;
+    const isFollowing = d?.data?.user?.friendship_status?.following; // uses chaining operators to determine if the successive nested JSON fields exist 
+    if (isFollowing === true) counts.following++; // if true, add to "following" tally
+    else counts.notFollowing++; // if not, add to "not following" tally
   });
 }
 
@@ -59,4 +62,38 @@ function drawBars(title, data) {
     textSize(16);
     text(d.value, x, height - margin - h - 10);
   });
+}
+
+// handle file input stuff:
+
+document.getElementById("fileInput").addEventListener("change", handleFileSelect);
+
+function handleFileSelect(event) {
+  const file = event.target.files[0];
+  if (!file) return;
+
+  const reader = new FileReader();
+
+  reader.onload = function(e) {
+    try {
+      const text = e.target.result;
+
+      // Parse depending on format
+      if (file.name.endsWith(".ndjson")) {
+        lines = text.split(/\r?\n/);
+        console.log(text);
+      } else {
+        return null;
+      }
+
+      console.log("Loaded", lines.length, "posts from local file");
+      parseData();
+
+    } catch (err) {
+      console.error("Failed to parse file:", err);
+      alert("Error reading file. Make sure it's valid NDJSON or JSON.");
+    }
+  };
+
+  reader.readAsText(file);
 }

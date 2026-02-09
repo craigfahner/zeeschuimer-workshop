@@ -331,3 +331,31 @@ To use your own data, ensure that your images are in a subfolder called 'images'
 
 Ensure that `useArchivedImages` is `true`. Once you've replaced the sample file with your own file, you should be able to load all of your data locally, eliminating the need to make direct requests from Instagram.
 
+## Annotation activity: Collaborative tagging (intensity and valence)
+
+[Here is another interpretation of the Image Wall, which allows images to be moved and thematically clustered.](https://annotation-server.onrender.com/)
+
+Consider the following general research question:
+
+> What is the relative emotional *intensity* and *valence* of images that are recommended by Instagram's algorithmic news feed?
+
+In the previous example, we could simply annotate each image according to the perceived emotional context (intensity of the emotion represented, for one, and the *valence* or positive negative emotional quality). In this example, images from a sample Zeeschuimer dataset are placed in a scatter-plot configuration, and can be repositioned by clicking and dragging. 
+
+Positioning an image *higher* will indicate a *higher intensity of emotion*, and positioning it *lower* will indicate a *lower intensity of emotion*. Likewise, positioning an image *to the left* will indicate a *negative emotional resonance* and positioning it *to the right* will indicate a positive emotional resonance. The position of the images is mapped directly to the annotations for respective *intensity* and *valence* fields in the dataset. 
+
+As an exercise, attempt to sort the images according to this encoding scheme. Reflect on the following questions:
+
+- What does scraped data tell us about the logic of algorithmically-recommended content?
+- Does there appear to be a bias towards affectively-charged content?
+- What other patterns do you observe?'
+
+Once you are finished tagging images, you may activate the option that reveals other users' tags. Do other users' tags reflect your own thinking about the emotional context of the images? Consider the similarities and differences while reflecting on the following questions:
+
+- Can affect and emotion be reliably recorded in relation to data?
+- Can emotional context be generalized?
+- Can an image bear multiple emotional resonances?
+- How does social media allow for the expression of emotion?
+- What other ways could emotional context be expressed and visualized through digital media?
+
+
+
