@@ -41,6 +41,7 @@ function parseNDJSON(text) {
         dateCaptured: new Date(), // when YOUR tool loaded it
         thumbnailUrl: imageUrl,
         displayUrl: imageUrl,
+        mediaType: data.media_type,
         annotation1: "",
         annotation2: "",
       };
@@ -189,6 +190,7 @@ function renderDetail(post) {
   meta.appendChild(makeField("Likes", post.likeCount));
   meta.appendChild(makeField("Comments", post.commentCount));
   meta.appendChild(makeField("Following", post.following));
+  meta.appendChild(makeField("Media Type", post.mediaType));
   meta.appendChild(makeField("Paid Partnership", post.isPaidPartnership));
   meta.appendChild(makeField("Date Posted", formatDate(post.datePosted)));
   meta.appendChild(makeField("Date Captured", formatDate(post.dateCaptured)));

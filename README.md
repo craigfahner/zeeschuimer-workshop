@@ -43,7 +43,7 @@ Here are some additional resources for considering the ethics of using social me
 
 Let's consider a sample research question:
 
-> To what extent do Instagram followers of bodybuilding podcasts received recommended content with right-wing messaging?
+> Does the content recommended to Instagram users who follow *bodybuilding podcast accounts* reflect a particular political bias?
 
 Rather than using your own account to examine this question – and bringing along your existing algorithmic profile and all of its biases – you should work with one or more research-oriented accounts.
 
@@ -264,9 +264,9 @@ While 4CAT is certainly a very useful tool, it unfortunately doesn't allow for t
 
 Here are a few JavaScript-based examples of how you can parse the NDJSON file produced by Zeeschuimer to visualize and analyze Instagram data:
 
-### Example 1: [Simple graph](https://craigfahner.github.io/zeeschuimer-workshop/following/following.html)
+### Example 1: [Simple graph](https://craigfahner.github.io/zeeschuimer-workshop/graph/index.html)
 
-[**Following vs non-following posts visualization**](https://craigfahner.github.io/zeeschuimer-workshop/following/following.html) ([code here](https://github.com/craigfahner/zeeschuimer-workshop/tree/main/following))
+[**Following vs non-following posts visualization**](https://craigfahner.github.io/zeeschuimer-workshop/graph/index.html) ([code here](https://github.com/craigfahner/zeeschuimer-workshop/tree/main/graph))
 
 To start, here's a simple example that graphs the NDJSON data according to a particular parameter. I am interested in the ratio between recommended posts (ie posts that originate with accounts that the user is not following) vs posts from followers. After loading the ndjson file as "lines", I parse the data like so:
 
