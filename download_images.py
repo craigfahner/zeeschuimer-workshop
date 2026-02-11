@@ -1,9 +1,10 @@
 import json
 import os
 import requests
+import sys
 
 # --- CONFIG ---
-INPUT_FILE = "posts.ndjson"
+INPUT_FILE = sys.argv[1]
 OUTDIR = "images"
 ONLY_NON_FOLLOWING = False  # Set to False to download from all accounts
 HEADERS = {
