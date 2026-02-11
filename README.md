@@ -270,7 +270,7 @@ Here are a few JavaScript-based examples of how you can parse the NDJSON file pr
 
 You can download a sample dataset [here](https://craigfahner.github.io/zeeschuimer-workshop/posts.ndjson) if you haven't captured your own.
 
-To start, here's a simple example that graphs the NDJSON data according to a particular parameter. I am interested in the ratio between recommended posts (ie posts that originate with accounts that the user is not following) vs posts from followers. After loading the ndjson file as "lines", I parse the data like so:
+To start, here's a simple example that graphs the NDJSON data according to a particular parameter. I am interested in the ratio between recommended posts (ie posts that originate with accounts that the user is not following) vs posts from followed accounts. After loading the ndjson file as "lines", I parse the data like so:
 
 ```
 function parseData() {
@@ -284,7 +284,7 @@ function parseData() {
 }
 ```
 
-This essentially keeps a tally of whether the data points originate from non-following or following accounts. I am graphing this using a simple [p5.js](https://www.p5js.org) sketch.
+This essentially keeps a tally of whether the data points originate from non-following or following accounts. I am graphing this using a simple [p5.js](https://www.p5js.org) sketch. It also does some other things, like averaging the likes on each respective category.
 
 ### Example 2: [Image wall](https://craigfahner.github.io/zeeschuimer-workshop/imagewall/grid.html)
 
