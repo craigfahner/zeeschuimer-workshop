@@ -268,6 +268,8 @@ Here are a few JavaScript-based examples of how you can parse the NDJSON file pr
 
 [**Following vs non-following posts visualization**](https://craigfahner.github.io/zeeschuimer-workshop/graph/index.html) ([code here](https://github.com/craigfahner/zeeschuimer-workshop/tree/main/graph))
 
+You can download a sample dataset [here](https://craigfahner.github.io/zeeschuimer-workshop/posts.ndjson) if you haven't captured your own.
+
 To start, here's a simple example that graphs the NDJSON data according to a particular parameter. I am interested in the ratio between recommended posts (ie posts that originate with accounts that the user is not following) vs posts from followers. After loading the ndjson file as "lines", I parse the data like so:
 
 ```
