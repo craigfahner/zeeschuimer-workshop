@@ -4,7 +4,7 @@ title: Scraping and situating social media data
 permalink: /
 ---
 
-presented by [Craig Fahner](https://www.craigfahner.com), February 11, 2026.
+presented by [Craig Fahner](https://www.craigfahner.com)
 
 
 [**Zeeschuimer**](https://github.com/digitalmethodsinitiative/zeeschuimer) is a browser plugin developed by the [Digital Methods Initiative](https://aihr.uva.nl/humanities-labs/digital-methods-initiative/digital-methods-initiative.html?cb) at the University of Amsterdam. When activated, Zeeschuimer monitors network activity on social media sites. It collects the *unstructured* data that is seen on social media feeds and produces *structured* datasets that can be used for later analysis. 
