@@ -322,7 +322,13 @@ To use, go to your computer's terminal or command prompt, navigate to the folder
 python3 download_images.py [your NDJSON file]
 ```
 
-This will save a folder of all of the images in the Zeeschuimer dataset. The above tools have settings in the .js file that read:
+This will save a folder of all of the images in the Zeeschuimer dataset, called `images` by default. Images with the same name in that folder get overwritten, so if you want to keep images you've previously captured, add a different folder name to the end of the command:
+
+```
+python3 download_images.py [your NDJSON file] images_nov8
+```
+
+The above tools have settings in the .js file that read:
 
 ```
 let useArchivedImages = true;

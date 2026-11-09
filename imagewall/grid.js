@@ -1,5 +1,6 @@
 let useArchivedImages = true;
-const ndjsonFile = "../posts.ndjson";
+const ndjsonFile = "../nov8posts.ndjson"; // change to set different ndjson file to read from by default
+const imagePath = "../nov8images"; // change to set different folder of archived images to read from
 
 let allPosts = [];
 let hoveredPost = null;
@@ -9,7 +10,7 @@ fetch(ndjsonFile)
   .then((res) => res.text())
   .then((text) => {
     allPosts = parseNDJSON(text);
-    renderGrid(allPosts);
+    updateGrid();
   });
 
 function parseNDJSON(text) {
@@ -73,7 +74,7 @@ function handleFileSelect(event) {
       resetVisualization();      // clear old DOM elements
       useArchivedImages = false; // set this to false since new file likely isn't archived
 
-      renderGrid(allPosts);
+      updateGrid();
       //initializeVisualization(); // rebuild using new posts
 
     } catch (err) {
@@ -118,7 +119,7 @@ function renderGrid(posts) {
     }
 
     const img = document.createElement("img");
-    img.src = useArchivedImages ? `images/${post.id}.jpg` : post.thumbnailUrl;
+    img.src = useArchivedImages ? `${imagePath}/${post.id}.jpg` : post.thumbnailUrl;
 
     tile.appendChild(img);
 
@@ -152,17 +153,28 @@ function updateSelectionOutline() {
   });
 }
 
-document.getElementById("filterSelect").addEventListener("change", (e) => {
-  const value = e.target.value;
-  let filtered = allPosts;
+// Redraws the grid using the current choices in both dropdown menus
+function updateGrid() {
+  const filterValue = document.getElementById("filterSelect").value;
+  const sortValue = document.getElementById("sortSelect").value;
 
-  if (value === "following") filtered = allPosts.filter((p) => p.following);
-  if (value === "nonfollowing") filtered = allPosts.filter((p) => !p.following);
+  let visible = allPosts;
 
-  renderGrid(filtered);
-    updatePostCounter(filtered, value);
+  if (filterValue === "following") visible = allPosts.filter((p) => p.following);
+  if (filterValue === "nonfollowing") visible = allPosts.filter((p) => !p.following);
 
-});
+  // Sort a copy, so that allPosts always stays in the original feed order
+  visible = [...visible];
+
+  if (sortValue === "recent") visible.sort((a, b) => (b.datePosted || 0) - (a.datePosted || 0));
+  if (sortValue === "likes") visible.sort((a, b) => b.likeCount - a.likeCount);
+
+  renderGrid(visible);
+  updatePostCounter(visible, filterValue);
+}
+
+document.getElementById("filterSelect").addEventListener("change", updateGrid);
+document.getElementById("sortSelect").addEventListener("change", updateGrid);
 
 function renderDetail(post) {
   const detail = document.getElementById("detailView");
@@ -176,7 +188,7 @@ function renderDetail(post) {
 
   const img = document.createElement("img");
   img.className = "detailImage";
-  img.src = useArchivedImages ? `images/${post.id}.jpg` : post.displayUrl;
+  img.src = useArchivedImages ? `${imagePath}/${post.id}.jpg` : post.displayUrl;
 
   link.appendChild(img);
   detail.appendChild(link);

@@ -20,6 +20,11 @@ body {
 }
 
 #filterSelect {
+  margin-bottom: 8px; /* small gap before sort menu */
+  padding: 6px;
+}
+
+#sortSelect {
   margin-bottom: 20px; /* 20px gap before grid */
   padding: 6px;
 }
