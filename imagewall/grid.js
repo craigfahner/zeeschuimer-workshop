@@ -1,6 +1,6 @@
 let useArchivedImages = true;
-const ndjsonFile = "../nov8posts.ndjson"; // change to set different ndjson file to read from by default
-const imagePath = "../nov8images"; // change to set different folder of archived images to read from
+const ndjsonFile = "../nov10posts.ndjson"; // change to set different ndjson file to read from by default
+const imagePath = "../nov10images"; // change to set different folder of archived images to read from
 
 let allPosts = [];
 let hoveredPost = null;
