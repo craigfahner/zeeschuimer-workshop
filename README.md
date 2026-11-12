@@ -65,6 +65,7 @@ These parameters should be considered when signing up for a new account, filling
 More information on the Research Persona Method can be found here:
 
 - [Digital Methods Initiative. “Research Persona as Digital Method.”](https://wiki.digitalmethods.net/Dmi/SummerSchool2019ResearchPersonaAsDigitalMethod)
+- [Akhavi, Shahpour and Rory Sharp. 2026. “Portraits of Mis-/Disinformation Through the Research Persona Method.” International Journal of Communication, 20, 1841–1862.](https://ijoc.org/index.php/ijoc/article/view/23080)
 - [Bounegru, Liliana, Melody Devries, and Esther Weltevrede. 2022. “The Research Persona Method: Figuring and Reconfiguring Personalised Information Flows.” In Figure: Concept and Method. Springer Nature Singapore Singapore.](https://library.oapen.org/bitstream/handle/20.500.12657/59380/978-981-19-2476-7.pdf?sequence=1#page=88)
 
 ## 3. Scraping Social Media Data with Zeeschuimer
